@@ -1,13 +1,13 @@
 # Homebrew formula for tock. make formula renders it from this template
-# (v5.3.0, 064a19263a32c837e85453953ca281100fdc159ebfbde6a134829ef061a04420); the release attaches the result. It goes in the tap
+# (v5.4.0-rc2, 5ec33b06a9edbb601cf2a2d6dda30be0350c857463361f595f8b39c09c8e39c9); the release attaches the result. It goes in the tap
 # repo homebrew-tock as Formula/tock.rb:
 #   brew tap confuserdotcom/tock && brew trust confuserdotcom/tock
 #   brew install tock && tock setup
 class Tock < Formula
   desc "Time tracker that lives in your menu bar and notch"
   homepage "https://github.com/confuserdotcom/tock"
-  url "https://github.com/confuserdotcom/tock/releases/download/v5.3.0/tock-v5.3.0-src.tar.gz"
-  sha256 "064a19263a32c837e85453953ca281100fdc159ebfbde6a134829ef061a04420"
+  url "https://github.com/confuserdotcom/tock/releases/download/v5.4.0-rc2/tock-v5.4.0-rc2-src.tar.gz"
+  sha256 "5ec33b06a9edbb601cf2a2d6dda30be0350c857463361f595f8b39c09c8e39c9"
   license "MIT"
 
   depends_on "go" => :build
@@ -17,7 +17,7 @@ class Tock < Formula
     ENV["GOPATH"] = buildpath/".gopath"
     ENV["GOCACHE"] = buildpath/".gocache"
     target = OS.mac? ? "dist-mac" : "dist-linux"
-    system "make", target, "PREFIX=#{prefix}", "VERSION=v5.3.0"
+    system "make", target, "PREFIX=#{prefix}", "VERSION=v5.4.0-rc2"
   end
 
   def caveats
@@ -32,6 +32,6 @@ class Tock < Formula
   end
 
   test do
-    assert_match "tock v5.3.0", shell_output("#{bin}/tock version")
+    assert_match "tock v5.4.0-rc2", shell_output("#{bin}/tock version")
   end
 end
